@@ -187,6 +187,24 @@
     <Compile Include="Forms\FormCompanyFileMaintenance.Designer.cs">
       <DependentUpon>FormCompanyFileMaintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormCurrencyCodes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCurrencyCodes.Designer.cs">
+      <DependentUpon>FormCurrencyCodes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormCustomerFileMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCustomerFileMaintenance.Designer.cs">
+      <DependentUpon>FormCustomerFileMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormGeneralCodesFileMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormGeneralCodesFileMaintenance.Designer.cs">
+      <DependentUpon>FormGeneralCodesFileMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +230,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCompanyFileMaintenance.resx">
       <DependentUpon>FormCompanyFileMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCurrencyCodes.resx">
+      <DependentUpon>FormCurrencyCodes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCustomerFileMaintenance.resx">
+      <DependentUpon>FormCustomerFileMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormGeneralCodesFileMaintenance.resx">
+      <DependentUpon>FormGeneralCodesFileMaintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
@@ -268,6 +295,7 @@
   <ItemGroup>
     <None Include="Resources\previous.png" />
     <None Include="Resources\next.png" />
+    <None Include="Resources\bin.png" />
     <Content Include="T21.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

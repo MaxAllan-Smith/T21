@@ -53,9 +53,9 @@
             this.labelAddress = new System.Windows.Forms.Label();
             this.textBoxBranchName = new System.Windows.Forms.TextBox();
             this.labelBranchName = new System.Windows.Forms.Label();
-            this.textBoxCustomerAccNumber = new System.Windows.Forms.TextBox();
+            this.textBoxCustomerLookup = new System.Windows.Forms.TextBox();
             this.labelCustomerNumber = new System.Windows.Forms.Label();
-            this.textBoxSupplierNumber = new System.Windows.Forms.TextBox();
+            this.textBoxSupplierLookup = new System.Windows.Forms.TextBox();
             this.labelSupplierNumber = new System.Windows.Forms.Label();
             this.labelSelectCompany = new System.Windows.Forms.Label();
             this.comboBoxSelectCompany = new System.Windows.Forms.ComboBox();
@@ -63,6 +63,10 @@
             this.labelSupplierName = new System.Windows.Forms.Label();
             this.labelInvoiceMessage = new System.Windows.Forms.Label();
             this.textBoxInvoiceMessage = new System.Windows.Forms.TextBox();
+            this.labelCurrencyLookup = new System.Windows.Forms.Label();
+            this.comboBoxCurrencyLookup = new System.Windows.Forms.ComboBox();
+            this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip.SuspendLayout();
             this.panelAddress.SuspendLayout();
             this.SuspendLayout();
@@ -75,6 +79,7 @@
             this.listBoxBranches.Name = "listBoxBranches";
             this.listBoxBranches.Size = new System.Drawing.Size(157, 381);
             this.listBoxBranches.TabIndex = 41;
+            this.listBoxBranches.SelectedIndexChanged += new System.EventHandler(this.listBoxBranches_SelectedIndexChanged);
             // 
             // toolStripSeparator4
             // 
@@ -102,8 +107,10 @@
             this.toolStripButtonSubmit,
             this.toolStripSeparator4,
             this.toolStripButtonCancel,
-            this.toolStripSeparator3});
-            this.toolStrip.Location = new System.Drawing.Point(0, 394);
+            this.toolStripSeparator3,
+            this.toolStripButtonDelete,
+            this.toolStripSeparator5});
+            this.toolStrip.Location = new System.Drawing.Point(0, 436);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(583, 74);
             this.toolStrip.TabIndex = 40;
@@ -158,7 +165,7 @@
             // 
             // textBoxFaxNumber
             // 
-            this.textBoxFaxNumber.Location = new System.Drawing.Point(303, 183);
+            this.textBoxFaxNumber.Location = new System.Drawing.Point(303, 210);
             this.textBoxFaxNumber.Name = "textBoxFaxNumber";
             this.textBoxFaxNumber.Size = new System.Drawing.Size(173, 20);
             this.textBoxFaxNumber.TabIndex = 35;
@@ -166,7 +173,7 @@
             // labelFaxNumber
             // 
             this.labelFaxNumber.AutoSize = true;
-            this.labelFaxNumber.Location = new System.Drawing.Point(230, 186);
+            this.labelFaxNumber.Location = new System.Drawing.Point(230, 213);
             this.labelFaxNumber.Name = "labelFaxNumber";
             this.labelFaxNumber.Size = new System.Drawing.Size(67, 13);
             this.labelFaxNumber.TabIndex = 34;
@@ -174,7 +181,7 @@
             // 
             // textBoxTelephoneNumber
             // 
-            this.textBoxTelephoneNumber.Location = new System.Drawing.Point(303, 156);
+            this.textBoxTelephoneNumber.Location = new System.Drawing.Point(303, 183);
             this.textBoxTelephoneNumber.Name = "textBoxTelephoneNumber";
             this.textBoxTelephoneNumber.Size = new System.Drawing.Size(173, 20);
             this.textBoxTelephoneNumber.TabIndex = 33;
@@ -182,7 +189,7 @@
             // textBoxPostCode
             // 
             this.textBoxPostCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxPostCode.Location = new System.Drawing.Point(303, 129);
+            this.textBoxPostCode.Location = new System.Drawing.Point(303, 156);
             this.textBoxPostCode.Name = "textBoxPostCode";
             this.textBoxPostCode.Size = new System.Drawing.Size(99, 20);
             this.textBoxPostCode.TabIndex = 31;
@@ -190,7 +197,7 @@
             // labelPostCode
             // 
             this.labelPostCode.AutoSize = true;
-            this.labelPostCode.Location = new System.Drawing.Point(238, 132);
+            this.labelPostCode.Location = new System.Drawing.Point(238, 159);
             this.labelPostCode.Name = "labelPostCode";
             this.labelPostCode.Size = new System.Drawing.Size(59, 13);
             this.labelPostCode.TabIndex = 30;
@@ -244,7 +251,7 @@
             // labelTelephoneNumber
             // 
             this.labelTelephoneNumber.AutoSize = true;
-            this.labelTelephoneNumber.Location = new System.Drawing.Point(196, 159);
+            this.labelTelephoneNumber.Location = new System.Drawing.Point(196, 186);
             this.labelTelephoneNumber.Name = "labelTelephoneNumber";
             this.labelTelephoneNumber.Size = new System.Drawing.Size(101, 13);
             this.labelTelephoneNumber.TabIndex = 32;
@@ -259,7 +266,7 @@
             this.panelAddress.Controls.Add(this.textBoxAddress3);
             this.panelAddress.Controls.Add(this.textBoxAddress2);
             this.panelAddress.Controls.Add(this.textBoxAddress1);
-            this.panelAddress.Location = new System.Drawing.Point(303, 49);
+            this.panelAddress.Location = new System.Drawing.Point(303, 76);
             this.panelAddress.Name = "panelAddress";
             this.panelAddress.Size = new System.Drawing.Size(252, 74);
             this.panelAddress.TabIndex = 29;
@@ -267,7 +274,7 @@
             // labelAddress
             // 
             this.labelAddress.AutoSize = true;
-            this.labelAddress.Location = new System.Drawing.Point(249, 50);
+            this.labelAddress.Location = new System.Drawing.Point(249, 77);
             this.labelAddress.Name = "labelAddress";
             this.labelAddress.Size = new System.Drawing.Size(48, 13);
             this.labelAddress.TabIndex = 28;
@@ -275,7 +282,7 @@
             // 
             // textBoxBranchName
             // 
-            this.textBoxBranchName.Location = new System.Drawing.Point(303, 22);
+            this.textBoxBranchName.Location = new System.Drawing.Point(303, 49);
             this.textBoxBranchName.Name = "textBoxBranchName";
             this.textBoxBranchName.Size = new System.Drawing.Size(208, 20);
             this.textBoxBranchName.TabIndex = 27;
@@ -283,41 +290,42 @@
             // labelBranchName
             // 
             this.labelBranchName.AutoSize = true;
-            this.labelBranchName.Location = new System.Drawing.Point(222, 25);
+            this.labelBranchName.Location = new System.Drawing.Point(222, 52);
             this.labelBranchName.Name = "labelBranchName";
             this.labelBranchName.Size = new System.Drawing.Size(75, 13);
             this.labelBranchName.TabIndex = 26;
             this.labelBranchName.Text = "Branch Name:";
             // 
-            // textBoxCustomerAccNumber
+            // textBoxCustomerLookup
             // 
-            this.textBoxCustomerAccNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxCustomerAccNumber.Location = new System.Drawing.Point(303, 209);
-            this.textBoxCustomerAccNumber.Name = "textBoxCustomerAccNumber";
-            this.textBoxCustomerAccNumber.Size = new System.Drawing.Size(99, 20);
-            this.textBoxCustomerAccNumber.TabIndex = 43;
+            this.textBoxCustomerLookup.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxCustomerLookup.Location = new System.Drawing.Point(303, 236);
+            this.textBoxCustomerLookup.Name = "textBoxCustomerLookup";
+            this.textBoxCustomerLookup.Size = new System.Drawing.Size(99, 20);
+            this.textBoxCustomerLookup.TabIndex = 43;
+            this.textBoxCustomerLookup.Leave += new System.EventHandler(this.textBoxCustomerLookup_Leave);
             // 
             // labelCustomerNumber
             // 
             this.labelCustomerNumber.AutoSize = true;
-            this.labelCustomerNumber.Location = new System.Drawing.Point(203, 212);
+            this.labelCustomerNumber.Location = new System.Drawing.Point(203, 239);
             this.labelCustomerNumber.Name = "labelCustomerNumber";
             this.labelCustomerNumber.Size = new System.Drawing.Size(94, 13);
             this.labelCustomerNumber.TabIndex = 42;
             this.labelCustomerNumber.Text = "Customer Number:";
             // 
-            // textBoxSupplierNumber
+            // textBoxSupplierLookup
             // 
-            this.textBoxSupplierNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxSupplierNumber.Location = new System.Drawing.Point(303, 235);
-            this.textBoxSupplierNumber.Name = "textBoxSupplierNumber";
-            this.textBoxSupplierNumber.Size = new System.Drawing.Size(99, 20);
-            this.textBoxSupplierNumber.TabIndex = 45;
+            this.textBoxSupplierLookup.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxSupplierLookup.Location = new System.Drawing.Point(303, 262);
+            this.textBoxSupplierLookup.Name = "textBoxSupplierLookup";
+            this.textBoxSupplierLookup.Size = new System.Drawing.Size(99, 20);
+            this.textBoxSupplierLookup.TabIndex = 45;
             // 
             // labelSupplierNumber
             // 
             this.labelSupplierNumber.AutoSize = true;
-            this.labelSupplierNumber.Location = new System.Drawing.Point(209, 238);
+            this.labelSupplierNumber.Location = new System.Drawing.Point(209, 265);
             this.labelSupplierNumber.Name = "labelSupplierNumber";
             this.labelSupplierNumber.Size = new System.Drawing.Size(88, 13);
             this.labelSupplierNumber.TabIndex = 44;
@@ -326,7 +334,7 @@
             // labelSelectCompany
             // 
             this.labelSelectCompany.AutoSize = true;
-            this.labelSelectCompany.Location = new System.Drawing.Point(209, 264);
+            this.labelSelectCompany.Location = new System.Drawing.Point(209, 25);
             this.labelSelectCompany.Name = "labelSelectCompany";
             this.labelSelectCompany.Size = new System.Drawing.Size(87, 13);
             this.labelSelectCompany.TabIndex = 46;
@@ -336,15 +344,16 @@
             // 
             this.comboBoxSelectCompany.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSelectCompany.FormattingEnabled = true;
-            this.comboBoxSelectCompany.Location = new System.Drawing.Point(303, 261);
+            this.comboBoxSelectCompany.Location = new System.Drawing.Point(303, 22);
             this.comboBoxSelectCompany.Name = "comboBoxSelectCompany";
             this.comboBoxSelectCompany.Size = new System.Drawing.Size(208, 21);
             this.comboBoxSelectCompany.TabIndex = 47;
+            this.comboBoxSelectCompany.SelectedValueChanged += new System.EventHandler(this.comboBoxSelectCompany_SelectedValueChanged);
             // 
             // labelCustomerName
             // 
             this.labelCustomerName.AutoSize = true;
-            this.labelCustomerName.Location = new System.Drawing.Point(408, 212);
+            this.labelCustomerName.Location = new System.Drawing.Point(408, 239);
             this.labelCustomerName.Name = "labelCustomerName";
             this.labelCustomerName.Size = new System.Drawing.Size(79, 13);
             this.labelCustomerName.TabIndex = 48;
@@ -354,7 +363,7 @@
             // labelSupplierName
             // 
             this.labelSupplierName.AutoSize = true;
-            this.labelSupplierName.Location = new System.Drawing.Point(408, 238);
+            this.labelSupplierName.Location = new System.Drawing.Point(408, 265);
             this.labelSupplierName.Name = "labelSupplierName";
             this.labelSupplierName.Size = new System.Drawing.Size(73, 13);
             this.labelSupplierName.TabIndex = 49;
@@ -364,7 +373,7 @@
             // labelInvoiceMessage
             // 
             this.labelInvoiceMessage.AutoSize = true;
-            this.labelInvoiceMessage.Location = new System.Drawing.Point(206, 291);
+            this.labelInvoiceMessage.Location = new System.Drawing.Point(206, 320);
             this.labelInvoiceMessage.Name = "labelInvoiceMessage";
             this.labelInvoiceMessage.Size = new System.Drawing.Size(91, 13);
             this.labelInvoiceMessage.TabIndex = 50;
@@ -372,26 +381,65 @@
             // 
             // textBoxInvoiceMessage
             // 
-            this.textBoxInvoiceMessage.Location = new System.Drawing.Point(303, 288);
+            this.textBoxInvoiceMessage.Location = new System.Drawing.Point(303, 317);
             this.textBoxInvoiceMessage.Multiline = true;
             this.textBoxInvoiceMessage.Name = "textBoxInvoiceMessage";
             this.textBoxInvoiceMessage.Size = new System.Drawing.Size(252, 99);
             this.textBoxInvoiceMessage.TabIndex = 51;
             // 
+            // labelCurrencyLookup
+            // 
+            this.labelCurrencyLookup.AutoSize = true;
+            this.labelCurrencyLookup.Location = new System.Drawing.Point(245, 294);
+            this.labelCurrencyLookup.Name = "labelCurrencyLookup";
+            this.labelCurrencyLookup.Size = new System.Drawing.Size(52, 13);
+            this.labelCurrencyLookup.TabIndex = 52;
+            this.labelCurrencyLookup.Text = "Currency:";
+            // 
+            // comboBoxCurrencyLookup
+            // 
+            this.comboBoxCurrencyLookup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCurrencyLookup.FormattingEnabled = true;
+            this.comboBoxCurrencyLookup.Location = new System.Drawing.Point(303, 290);
+            this.comboBoxCurrencyLookup.Name = "comboBoxCurrencyLookup";
+            this.comboBoxCurrencyLookup.Size = new System.Drawing.Size(209, 21);
+            this.comboBoxCurrencyLookup.TabIndex = 53;
+            // 
+            // toolStripButtonDelete
+            // 
+            this.toolStripButtonDelete.AutoSize = false;
+            this.toolStripButtonDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButtonDelete.Image = global::T21.Properties.Resources.bin;
+            this.toolStripButtonDelete.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolStripButtonDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonDelete.Name = "toolStripButtonDelete";
+            this.toolStripButtonDelete.Size = new System.Drawing.Size(55, 71);
+            this.toolStripButtonDelete.Text = "Delete";
+            this.toolStripButtonDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 74);
+            // 
             // FormBranchFileMaintenance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 468);
+            this.ClientSize = new System.Drawing.Size(583, 510);
+            this.Controls.Add(this.comboBoxCurrencyLookup);
+            this.Controls.Add(this.labelCurrencyLookup);
             this.Controls.Add(this.textBoxInvoiceMessage);
             this.Controls.Add(this.labelInvoiceMessage);
             this.Controls.Add(this.labelSupplierName);
             this.Controls.Add(this.labelCustomerName);
             this.Controls.Add(this.comboBoxSelectCompany);
             this.Controls.Add(this.labelSelectCompany);
-            this.Controls.Add(this.textBoxSupplierNumber);
+            this.Controls.Add(this.textBoxSupplierLookup);
             this.Controls.Add(this.labelSupplierNumber);
-            this.Controls.Add(this.textBoxCustomerAccNumber);
+            this.Controls.Add(this.textBoxCustomerLookup);
             this.Controls.Add(this.labelCustomerNumber);
             this.Controls.Add(this.listBoxBranches);
             this.Controls.Add(this.toolStrip);
@@ -448,9 +496,9 @@
         private System.Windows.Forms.Label labelAddress;
         private System.Windows.Forms.TextBox textBoxBranchName;
         private System.Windows.Forms.Label labelBranchName;
-        private System.Windows.Forms.TextBox textBoxCustomerAccNumber;
+        private System.Windows.Forms.TextBox textBoxCustomerLookup;
         private System.Windows.Forms.Label labelCustomerNumber;
-        private System.Windows.Forms.TextBox textBoxSupplierNumber;
+        private System.Windows.Forms.TextBox textBoxSupplierLookup;
         private System.Windows.Forms.Label labelSupplierNumber;
         private System.Windows.Forms.Label labelSelectCompany;
         private System.Windows.Forms.ComboBox comboBoxSelectCompany;
@@ -458,5 +506,9 @@
         private System.Windows.Forms.Label labelSupplierName;
         private System.Windows.Forms.Label labelInvoiceMessage;
         private System.Windows.Forms.TextBox textBoxInvoiceMessage;
+        private System.Windows.Forms.Label labelCurrencyLookup;
+        private System.Windows.Forms.ComboBox comboBoxCurrencyLookup;
+        private System.Windows.Forms.ToolStripButton toolStripButtonDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }

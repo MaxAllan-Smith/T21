@@ -481,6 +481,7 @@
             this.customerFileMaintenanceToolStripMenuItem.Name = "customerFileMaintenanceToolStripMenuItem";
             this.customerFileMaintenanceToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
             this.customerFileMaintenanceToolStripMenuItem.Text = "Customer File Maintenance";
+            this.customerFileMaintenanceToolStripMenuItem.Click += new System.EventHandler(this.customerFileMaintenanceToolStripMenuItem_Click);
             // 
             // productAndPriceFileMaintenanceToolStripMenuItem
             // 
@@ -511,6 +512,7 @@
             this.generalCodeFileToolStripMenuItem.Name = "generalCodeFileToolStripMenuItem";
             this.generalCodeFileToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
             this.generalCodeFileToolStripMenuItem.Text = "General Code File Maintenance";
+            this.generalCodeFileToolStripMenuItem.Click += new System.EventHandler(this.generalCodeFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator17
             // 

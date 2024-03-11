@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using T21_Library.Models;
 using T21_Library.Repositories;
 
 namespace T21.Forms
@@ -25,13 +20,42 @@ namespace T21.Forms
 
         private void FormBranchFileMaintenance_Load(object sender, EventArgs e)
         {
-            labelCustomerName.Text = "";
-            labelSupplierName.Text = "";
+            ClearAllFields(); // Clear all input fields on form load
+            LoadCompanies();
+            comboBoxSelectCompany.SelectedIndex = 0; // Default to the first member
+        }
 
-            // Populates the comboboxes with the company names and indexes
+        private void LoadCompanies()
+        {
             comboBoxSelectCompany.DataSource = _companyRepository.GetAllCompanies();
             comboBoxSelectCompany.DisplayMember = "CompanyName";
             comboBoxSelectCompany.ValueMember = "CompanyCode";
+        }
+
+        private void LoadBranches(int companyCode)
+        {
+            listBoxBranches.DataSource = _branchRepository.GetBranchByVisibleCompanies(companyCode);
+            listBoxBranches.DisplayMember = "BranchName";
+            listBoxBranches.ValueMember = "BranchCode";
+            listBoxBranches.SelectedIndex = -1;
+        }
+
+        private void ClearAllFields()
+        {
+            textBoxBranchName.Clear();
+            textBoxAddress1.Clear();
+            textBoxAddress2.Clear();
+            textBoxAddress3.Clear();
+            textBoxAddress4.Clear();
+            textBoxAddress5.Clear();
+            textBoxPostCode.Clear();
+            textBoxTelephoneNumber.Clear();
+            textBoxFaxNumber.Clear();
+            textBoxInvoiceMessage.Clear();
+            textBoxCustomerLookup.Clear();
+            textBoxSupplierLookup.Clear();
+            comboBoxCurrencyLookup.SelectedIndex = -1;
+            // Assuming there might be other combo boxes to clear
         }
 
         private void toolStripButtonExit_Click(object sender, EventArgs e)
@@ -41,24 +65,8 @@ namespace T21.Forms
 
         private void toolStripButtonCancel_Click(object sender, EventArgs e)
         {
-            // Clears all textboxes and comboboxes and sets the focus to the first textbox
-            foreach (Control c in this.Controls)
-            {
-                if (c is TextBox)
-                {
-                    ((TextBox)c).Clear();
-                }
-                if (c is ComboBox)
-                {
-                    ((ComboBox)c).SelectedIndex = -1;
-                }
-                if (c is Label)
-                {
-                    ((Label)c).Text = "";
-                }
-            }
-
-            textBoxBranchName.Focus();
+            ClearAllFields();
+            listBoxBranches.ClearSelected(); // Optionally clear the list box selection too
         }
 
         private void toolStripButtonSubmit_Click(object sender, EventArgs e)
@@ -81,7 +89,7 @@ namespace T21.Forms
                 branch.GlobalInvoiceMessage = textBoxInvoiceMessage.Text;
                 branch.CustomerLookup = Convert.ToInt32(textBoxCustomerLookup.Text); // TODO: Add a lookup for customer
                 branch.SupplierLookup = Convert.ToInt32(textBoxSupplierLookup.Text); // TODO: Add a lookup for supplier
-                branch.CurrencyLookup = Convert.ToInt32(textBoxCurrencyLookup.Text); // TODO: Add a lookup for currency
+                branch.CurrencyLookup = Convert.ToInt32(comboBoxCurrencyLookup.Text); // TODO: Add a lookup for currency
 
                 _branchRepository.UpdateBranch(branch);
 
@@ -91,7 +99,7 @@ namespace T21.Forms
             }
             else
             {
-                var branch = new T21_Library.Models.Branch
+                var branch = new Branch
                 {
                     BranchName = textBoxBranchName.Text,
                     Address1 = textBoxAddress1.Text,
@@ -106,7 +114,7 @@ namespace T21.Forms
                     GlobalInvoiceMessage = textBoxInvoiceMessage.Text,
                     CustomerLookup = Convert.ToInt32(textBoxCustomerLookup.Text), // TODO: Add a lookup for customer
                     SupplierLookup = Convert.ToInt32(textBoxSupplierLookup.Text), // TODO: Add a lookup for supplier
-                    CurrencyLookup = Convert.ToInt32(textBoxCurrencyLookup.Text), // TODO: Add a lookup for currency
+                    CurrencyLookup = Convert.ToInt32(comboBoxCurrencyLookup.Text), // TODO: Add a lookup for currency
                 };
 
                 _branchRepository.AddBranch(branch);
@@ -115,6 +123,72 @@ namespace T21.Forms
 
                 toolStripButtonCancel_Click(sender, e);
             }
+        }
+
+        private void comboBoxSelectCompany_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxSelectCompany.SelectedIndex >= 0)
+            {
+                // Assuming the Company object has a CompanyCode property of type int
+                var selectedCompany = comboBoxSelectCompany.SelectedItem as Company;
+                if (selectedCompany != null)
+                {
+                    int companyCode = selectedCompany.CompanyCode;
+                    LoadBranches(companyCode);
+                }
+            }
+        }
+
+
+        private void toolStripButtonDelete_Click(object sender, EventArgs e)
+        {
+            // Deletes the selected branch from the database and refreshes the listbox
+            var branch = listBoxBranches.SelectedIndex + 1;
+            _branchRepository.DeleteBranch(branch);
+            listBoxBranches.DataSource = _branchRepository.GetBranchByVisibleCompanies(Convert.ToInt32(comboBoxSelectCompany.SelectedIndex + 1));
+            listBoxBranches.DisplayMember = "BranchName";
+            listBoxBranches.ValueMember = "BranchCode";
+
+            toolStripButtonCancel_Click(sender, e);
+
+            MessageBox.Show("Branch Deleted", "Branch File Maintenance", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void listBoxBranches_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxBranches.SelectedIndex != -1)
+            {
+                Branch selectedBranch = listBoxBranches.SelectedItem as Branch;
+                if (selectedBranch != null)
+                {
+                    textBoxBranchName.Text = selectedBranch.BranchName;
+                    textBoxAddress1.Text = selectedBranch.Address1;
+                    textBoxAddress2.Text = selectedBranch.Address2;
+                    textBoxAddress3.Text = selectedBranch.Address3;
+                    textBoxAddress4.Text = selectedBranch.Address4;
+                    textBoxAddress5.Text = selectedBranch.Address5;
+                    textBoxPostCode.Text = selectedBranch.PostCode;
+                    textBoxTelephoneNumber.Text = selectedBranch.Telephone;
+                    textBoxFaxNumber.Text = selectedBranch.Fax;
+                    textBoxInvoiceMessage.Text = selectedBranch.GlobalInvoiceMessage;
+                    textBoxCustomerLookup.Text = selectedBranch.CustomerLookup.ToString();
+                    textBoxSupplierLookup.Text = selectedBranch.SupplierLookup.ToString();
+                    comboBoxCurrencyLookup.SelectedValue = selectedBranch.CurrencyLookup;
+                }
+                else
+                {
+                    ClearAllFields(); // Clears all fields if no branch is selected
+                }
+            }
+            else
+            {
+                ClearAllFields(); // Clears all fields if the selection is cleared
+            }
+        }
+
+        private void textBoxCustomerLookup_Leave(object sender, EventArgs e)
+        {
+
         }
     }
 }

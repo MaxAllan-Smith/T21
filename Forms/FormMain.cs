@@ -12,14 +12,16 @@ namespace T21
         private readonly BranchRepository _branchRepository;
         private readonly CompanyRepository _companyRepository;
         private readonly SupplierRepository _supplierRepository;
+        private readonly CurrencyCodeRepository _currencyCodeRepository;
 
-        public FormMain(UserRepository userRepository, BranchRepository branchRepository, CompanyRepository companyRepository, SupplierRepository supplierRepository)
+        public FormMain(UserRepository userRepository, BranchRepository branchRepository, CompanyRepository companyRepository, SupplierRepository supplierRepository, CurrencyCodeRepository currencyCodeRepository)
         {
             InitializeComponent();
             _userRepository = userRepository;
             _branchRepository = branchRepository;
             _companyRepository = companyRepository;
             _supplierRepository = supplierRepository;
+            _currencyCodeRepository = currencyCodeRepository;
         }
 
         private void FormMain_Load(object sender, System.EventArgs e)
@@ -75,6 +77,24 @@ namespace T21
         {
             var formBranchFileMaintenance = new FormBranchFileMaintenance(_branchRepository, _companyRepository);
             if (formBranchFileMaintenance.ShowDialog() == DialogResult.OK)
+            {
+                
+            }
+        }
+
+        private void customerFileMaintenanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var formCustomerFileMaintenance = new FormCustomerFileMaintenance();
+            if (formCustomerFileMaintenance.ShowDialog() == DialogResult.OK)
+            {
+                
+            }
+        }
+
+        private void generalCodeFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var formGeneralCodesFileMaintenance = new FormGeneralCodesFileMaintenance(_currencyCodeRepository);
+            if (formGeneralCodesFileMaintenance.ShowDialog() == DialogResult.OK)
             {
                 
             }

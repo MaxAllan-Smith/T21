@@ -50,6 +50,7 @@ namespace T21
                 services.AddScoped<BranchRepository>();
                 services.AddScoped<CompanyRepository>();
                 services.AddScoped<SupplierRepository>();
+                services.AddScoped<CurrencyCodeRepository>();
 
                 // Forms
                 services.AddScoped<FormMain>();

@@ -58,5 +58,41 @@ namespace T21.Properties {
                 this["DefaultCompanyID"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LocalCurrencyCode {
+            get {
+                return ((string)(this["LocalCurrencyCode"]));
+            }
+            set {
+                this["LocalCurrencyCode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LocalCurrencyDescription {
+            get {
+                return ((string)(this["LocalCurrencyDescription"]));
+            }
+            set {
+                this["LocalCurrencyDescription"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal LocalCurrencyRate {
+            get {
+                return ((decimal)(this["LocalCurrencyRate"]));
+            }
+            set {
+                this["LocalCurrencyRate"] = value;
+            }
+        }
     }
 }
