@@ -132,15 +132,20 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.5.2.8\lib\net46\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.DiagnosticSource.8.0.0\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -199,6 +204,12 @@
     <Compile Include="Forms\FormCustomerFileMaintenance.Designer.cs">
       <DependentUpon>FormCustomerFileMaintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormCustomerPaymentTerms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCustomerPaymentTerms.Designer.cs">
+      <DependentUpon>FormCustomerPaymentTerms.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormGeneralCodesFileMaintenance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,11 +228,23 @@
     <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormSellingLevels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSellingLevels.Designer.cs">
+      <DependentUpon>FormSellingLevels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormUserFileMaintenance.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormUserFileMaintenance.Designer.cs">
       <DependentUpon>FormUserFileMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormVATCodes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormVATCodes.Designer.cs">
+      <DependentUpon>FormVATCodes.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -237,6 +260,9 @@
     <EmbeddedResource Include="Forms\FormCustomerFileMaintenance.resx">
       <DependentUpon>FormCustomerFileMaintenance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCustomerPaymentTerms.resx">
+      <DependentUpon>FormCustomerPaymentTerms.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGeneralCodesFileMaintenance.resx">
       <DependentUpon>FormGeneralCodesFileMaintenance.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,8 +272,14 @@
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSellingLevels.resx">
+      <DependentUpon>FormSellingLevels.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormUserFileMaintenance.resx">
       <DependentUpon>FormUserFileMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormVATCodes.resx">
+      <DependentUpon>FormVATCodes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -296,8 +328,10 @@
     <None Include="Resources\previous.png" />
     <None Include="Resources\next.png" />
     <None Include="Resources\bin.png" />
+    <None Include="Resources\help.png" />
     <Content Include="T21.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

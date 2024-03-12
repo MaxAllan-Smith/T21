@@ -43,6 +43,11 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonCancel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonMakeDefault = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.labelLocalCurrencyCode = new System.Windows.Forms.Label();
             this.textBoxLocalCurrencyCode = new System.Windows.Forms.TextBox();
             this.labelLocalCurrencyName = new System.Windows.Forms.Label();
@@ -81,7 +86,12 @@
             this.toolStripButtonOK,
             this.toolStripSeparator4,
             this.toolStripButtonCancel,
-            this.toolStripSeparator3});
+            this.toolStripSeparator3,
+            this.toolStripButton1,
+            this.toolStripSeparator6,
+            this.toolStripSeparator7,
+            this.toolStripButtonMakeDefault,
+            this.toolStripSeparator5});
             this.toolStrip.Location = new System.Drawing.Point(0, 376);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(488, 74);
@@ -149,6 +159,51 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 74);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.AutoSize = false;
+            this.toolStripButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton1.Image = global::T21.Properties.Resources.bin;
+            this.toolStripButton1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(55, 71);
+            this.toolStripButton1.Text = "Delete";
+            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 74);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 74);
+            // 
+            // toolStripButtonMakeDefault
+            // 
+            this.toolStripButtonMakeDefault.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButtonMakeDefault.AutoSize = false;
+            this.toolStripButtonMakeDefault.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButtonMakeDefault.Image = global::T21.Properties.Resources.help;
+            this.toolStripButtonMakeDefault.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolStripButtonMakeDefault.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonMakeDefault.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonMakeDefault.Name = "toolStripButtonMakeDefault";
+            this.toolStripButtonMakeDefault.Size = new System.Drawing.Size(55, 71);
+            this.toolStripButtonMakeDefault.Text = "Default";
+            this.toolStripButtonMakeDefault.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonMakeDefault.Click += new System.EventHandler(this.toolStripButtonMakeDefault_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 74);
             // 
             // labelLocalCurrencyCode
             // 
@@ -294,6 +349,9 @@
             this.textBoxRate.Size = new System.Drawing.Size(81, 20);
             this.textBoxRate.TabIndex = 58;
             this.textBoxRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxRate.Click += new System.EventHandler(this.textBoxRate_Click);
+            this.textBoxRate.Enter += new System.EventHandler(this.textBoxRate_Enter);
+            this.textBoxRate.Leave += new System.EventHandler(this.textBoxRate_Leave);
             // 
             // labelPercentage
             // 
@@ -348,6 +406,7 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(464, 185);
             this.dataGridView.TabIndex = 61;
+            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
             // ColumnCode
             // 
@@ -470,5 +529,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFixedOrVariable;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnRate;
+        private System.Windows.Forms.ToolStripButton toolStripButtonMakeDefault;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     }
 }

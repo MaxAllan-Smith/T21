@@ -31,13 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGeneralCodesFileMaintenance));
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonExit = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonOK = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonCancel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.listBox = new System.Windows.Forms.ListBox();
-            this.toolStripButtonExit = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonOK = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonCancel = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,15 +64,57 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 74);
             // 
+            // toolStripButtonExit
+            // 
+            this.toolStripButtonExit.AutoSize = false;
+            this.toolStripButtonExit.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButtonExit.Image = global::T21.Properties.Resources.exit;
+            this.toolStripButtonExit.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolStripButtonExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonExit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonExit.Name = "toolStripButtonExit";
+            this.toolStripButtonExit.Size = new System.Drawing.Size(55, 71);
+            this.toolStripButtonExit.Text = "Exit";
+            this.toolStripButtonExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonExit.Click += new System.EventHandler(this.toolStripButtonExit_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 74);
             // 
+            // toolStripButtonOK
+            // 
+            this.toolStripButtonOK.AutoSize = false;
+            this.toolStripButtonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButtonOK.Image = global::T21.Properties.Resources.submit;
+            this.toolStripButtonOK.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolStripButtonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonOK.Name = "toolStripButtonOK";
+            this.toolStripButtonOK.Size = new System.Drawing.Size(55, 71);
+            this.toolStripButtonOK.Text = "OK";
+            this.toolStripButtonOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonOK.Click += new System.EventHandler(this.toolStripButtonOK_Click);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 74);
+            // 
+            // toolStripButtonCancel
+            // 
+            this.toolStripButtonCancel.AutoSize = false;
+            this.toolStripButtonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButtonCancel.Image = global::T21.Properties.Resources.cancel;
+            this.toolStripButtonCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolStripButtonCancel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCancel.Name = "toolStripButtonCancel";
+            this.toolStripButtonCancel.Size = new System.Drawing.Size(55, 71);
+            this.toolStripButtonCancel.Text = "Cancel";
+            this.toolStripButtonCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonCancel.Click += new System.EventHandler(this.toolStripButtonCancel_Click);
             // 
             // toolStripSeparator3
             // 
@@ -111,6 +153,7 @@
             "Regions",
             "Return Reasons",
             "Sales Representatives",
+            "Selling Levels",
             "Shipping Methods",
             "Stock Adjustment Reasons",
             "Van Codes",
@@ -122,46 +165,6 @@
             this.listBox.Sorted = true;
             this.listBox.TabIndex = 43;
             this.listBox.DoubleClick += new System.EventHandler(this.listBox_DoubleClick);
-            // 
-            // toolStripButtonExit
-            // 
-            this.toolStripButtonExit.AutoSize = false;
-            this.toolStripButtonExit.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButtonExit.Image = global::T21.Properties.Resources.exit;
-            this.toolStripButtonExit.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolStripButtonExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonExit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonExit.Name = "toolStripButtonExit";
-            this.toolStripButtonExit.Size = new System.Drawing.Size(55, 71);
-            this.toolStripButtonExit.Text = "Exit";
-            this.toolStripButtonExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // toolStripButtonOK
-            // 
-            this.toolStripButtonOK.AutoSize = false;
-            this.toolStripButtonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButtonOK.Image = global::T21.Properties.Resources.submit;
-            this.toolStripButtonOK.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolStripButtonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonOK.Name = "toolStripButtonOK";
-            this.toolStripButtonOK.Size = new System.Drawing.Size(55, 71);
-            this.toolStripButtonOK.Text = "OK";
-            this.toolStripButtonOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButtonOK.Click += new System.EventHandler(this.toolStripButtonOK_Click);
-            // 
-            // toolStripButtonCancel
-            // 
-            this.toolStripButtonCancel.AutoSize = false;
-            this.toolStripButtonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButtonCancel.Image = global::T21.Properties.Resources.cancel;
-            this.toolStripButtonCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolStripButtonCancel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCancel.Name = "toolStripButtonCancel";
-            this.toolStripButtonCancel.Size = new System.Drawing.Size(55, 71);
-            this.toolStripButtonCancel.Text = "Cancel";
-            this.toolStripButtonCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // FormGeneralCodesFileMaintenance
             // 

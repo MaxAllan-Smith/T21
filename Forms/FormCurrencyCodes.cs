@@ -32,8 +32,13 @@ namespace T21.Forms
             var currencyCodes = _currencyCodeRepository.GetAllCurrencyCodes();
             foreach (var currencyCode in currencyCodes)
             {
-                dataGridView.Rows.Add(currencyCode.Code, currencyCode.Description, currencyCode.Symbol, currencyCode.FixedOrVariable, Convert.ToDecimal(currencyCode.Rate));
+                dataGridView.Rows.Add(currencyCode.Code, currencyCode.Symbol, currencyCode.Description, currencyCode.FixedOrVariable, Convert.ToDecimal(currencyCode.Rate));
             }
+
+            // sets the datagridview to no selection
+            dataGridView.ClearSelection();
+
+            textBoxRate.Text = "0.00";
         }
 
         private void toolStripButtonExit_Click(object sender, EventArgs e)
@@ -43,19 +48,14 @@ namespace T21.Forms
 
         private void toolStripButtonCancel_Click(object sender, EventArgs e)
         {
-            // clears all textboxes and comboboxes in form using a foreach loop
-            foreach (Control control in Controls)
-            {
-                if (control is TextBox)
-                {
-                    control.Text = "";
-                }
-                if (control is ComboBox)
-                {
-                    ((ComboBox)control).SelectedIndex = -1;
-                    ((ComboBox)control).Text = "";
-                }
-            }
+            // clears all textboxes except for textBoxLocalCurrencyCode
+            textBoxCurrencyCode.Text = "";
+            textBoxDescription.Text = "";
+            comboBoxSymbol.SelectedIndex = -1;
+            comboBoxFixedOrVariable.SelectedIndex = -1;
+            textBoxRate.Text = "";
+            dataGridView.ClearSelection();
+            textBoxRate.Text = "0.00";
 
             // sets focus to the first textbox in the form
             textBoxCurrencyCode.Focus();
@@ -113,7 +113,7 @@ namespace T21.Forms
             }
 
             // add currency code to the datagridview that already has preset columns
-            dataGridView.Rows.Add(textBoxCurrencyCode.Text, textBoxDescription.Text, comboBoxSymbol.SelectedItem.ToString(), comboBoxFixedOrVariable.SelectedItem.ToString(), textBoxRate.Text);
+            dataGridView.Rows.Add(textBoxCurrencyCode.Text, comboBoxSymbol.SelectedItem.ToString(), textBoxDescription.Text, comboBoxFixedOrVariable.SelectedItem.ToString(), textBoxRate.Text);
 
             // updates local currency labels to what is stored in the settings
             labelLocalCurrencyCode.Text = Properties.Settings.Default.LocalCurrencyCode;
@@ -121,6 +121,98 @@ namespace T21.Forms
             labelLocalCurrencyPerc.Text = Properties.Settings.Default.LocalCurrencyRate.ToString();
 
             toolStripButtonCancel.PerformClick(); // Assuming this clears the form or closes the modal/dialog
+        }
+
+        private void dataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            // updates the textboxes and comboboxes with the selected row's data
+            if (dataGridView.SelectedRows.Count == 0)
+            {
+                toolStripButtonCancel.PerformClick();
+            }
+            else if (dataGridView.SelectedRows.Count > 0)
+            {
+                textBoxCurrencyCode.Text = dataGridView.SelectedRows[0].Cells[0].Value.ToString();
+                comboBoxSymbol.SelectedItem = dataGridView.SelectedRows[0].Cells[1].Value.ToString();
+                textBoxDescription.Text = dataGridView.SelectedRows[0].Cells[2].Value.ToString();
+                comboBoxFixedOrVariable.SelectedItem = dataGridView.SelectedRows[0].Cells[3].Value.ToString();
+                textBoxRate.Text = dataGridView.SelectedRows[0].Cells[4].Value.ToString();
+            }
+        }
+
+        private void toolStripButtonDelete_Click(object sender, EventArgs e)
+        {
+            // checks if the selected currency code is the local currency from settings and prevents deletion
+            if (dataGridView.SelectedRows[0].Cells[0].Value.ToString() == Properties.Settings.Default.LocalCurrencyCode)
+            {
+                MessageBox.Show("Cannot Delete Local Currency", "Currency File Maintenance", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxCurrencyCode.Focus();
+                return;
+            }
+
+            // Deletes the selected currency from the database and refreshes the datagridview
+            var dataGridCurrencyCode = dataGridView.SelectedRows[0].Cells[0].Value.ToString();
+            var currencyCode = _currencyCodeRepository.GetCurrencyCodeByCode(dataGridCurrencyCode);
+            _currencyCodeRepository.DeleteCurrencyCode(currencyCode.ID);
+
+            dataGridView.Rows.RemoveAt(dataGridView.SelectedRows[0].Index);
+
+            toolStripButtonCancel.PerformClick();
+
+            MessageBox.Show("Currency deleted", "Currency File Maintenance", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void toolStripButtonMakeDefault_Click(object sender, EventArgs e)
+        {
+            // checks if the selected currency code is already the local currency from settings and prevents setting again
+            if (dataGridView.SelectedRows[0].Cells[0].Value.ToString() == Properties.Settings.Default.LocalCurrencyCode)
+            {
+                MessageBox.Show("Currency is already the default local currency", "Currency File Maintenance", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxCurrencyCode.Focus();
+                return;
+            }
+
+            // asks the user if they want to make the selected currency the default local currency
+            var dialogResult = MessageBox.Show("Do you want to make this your default local currency?", "Set Local Currency", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                Properties.Settings.Default.LocalCurrencyCode = dataGridView.SelectedRows[0].Cells[0].Value.ToString();
+                Properties.Settings.Default.LocalCurrencyDescription = dataGridView.SelectedRows[0].Cells[2].Value.ToString();
+                Properties.Settings.Default.LocalCurrencyRate = Convert.ToDecimal(dataGridView.SelectedRows[0].Cells[4].Value.ToString());
+                Properties.Settings.Default.Save();
+
+                // updates local currency labels to what is stored in the settings
+                labelLocalCurrencyCode.Text = Properties.Settings.Default.LocalCurrencyCode;
+                labelLocalCurrencyName.Text = Properties.Settings.Default.LocalCurrencyDescription;
+                labelLocalCurrencyPerc.Text = Properties.Settings.Default.LocalCurrencyRate.ToString();
+            }
+
+            toolStripButtonCancel.PerformClick();
+        }
+
+        private void textBoxRate_Leave(object sender, EventArgs e)
+        {
+            // checks if the rate is a valid decimal and if not, corrects the format to a valid decimal % rate
+            if (!decimal.TryParse(textBoxRate.Text, out decimal rate))
+            {
+                textBoxRate.Text = "0.00";
+                textBoxRate.Focus();
+            }
+            else
+            {
+                textBoxRate.Text = rate.ToString("0.00");
+            }
+        }
+
+        private void textBoxRate_Enter(object sender, EventArgs e)
+        {
+            textBoxRate.SelectAll();
+        }
+
+        private void textBoxRate_Click(object sender, EventArgs e)
+        {
+            textBoxRate.SelectAll();
         }
     }
 }

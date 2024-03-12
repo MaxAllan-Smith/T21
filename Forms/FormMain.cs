@@ -13,8 +13,11 @@ namespace T21
         private readonly CompanyRepository _companyRepository;
         private readonly SupplierRepository _supplierRepository;
         private readonly CurrencyCodeRepository _currencyCodeRepository;
+        private readonly VATCodeRepository _vatCodeRepository;
+        private readonly SellingLevelRepository _sellingLevelRepository;
+        private readonly CustomerPaymentTermsRepository _customerPaymentTermsRepository;
 
-        public FormMain(UserRepository userRepository, BranchRepository branchRepository, CompanyRepository companyRepository, SupplierRepository supplierRepository, CurrencyCodeRepository currencyCodeRepository)
+        public FormMain(UserRepository userRepository, BranchRepository branchRepository, CompanyRepository companyRepository, SupplierRepository supplierRepository, CurrencyCodeRepository currencyCodeRepository, VATCodeRepository vatCodeRepository, SellingLevelRepository sellingLevelRepository, CustomerPaymentTermsRepository customerPaymentTermsRepository)
         {
             InitializeComponent();
             _userRepository = userRepository;
@@ -22,6 +25,9 @@ namespace T21
             _companyRepository = companyRepository;
             _supplierRepository = supplierRepository;
             _currencyCodeRepository = currencyCodeRepository;
+            _vatCodeRepository = vatCodeRepository;
+            _sellingLevelRepository = sellingLevelRepository;
+            _customerPaymentTermsRepository = customerPaymentTermsRepository;
         }
 
         private void FormMain_Load(object sender, System.EventArgs e)
@@ -84,7 +90,7 @@ namespace T21
 
         private void customerFileMaintenanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var formCustomerFileMaintenance = new FormCustomerFileMaintenance();
+            var formCustomerFileMaintenance = new FormCustomerFileMaintenance(_currencyCodeRepository, _vatCodeRepository, _sellingLevelRepository, _customerPaymentTermsRepository);
             if (formCustomerFileMaintenance.ShowDialog() == DialogResult.OK)
             {
                 
@@ -93,7 +99,7 @@ namespace T21
 
         private void generalCodeFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var formGeneralCodesFileMaintenance = new FormGeneralCodesFileMaintenance(_currencyCodeRepository);
+            var formGeneralCodesFileMaintenance = new FormGeneralCodesFileMaintenance(_currencyCodeRepository, _vatCodeRepository, _sellingLevelRepository, _customerPaymentTermsRepository);
             if (formGeneralCodesFileMaintenance.ShowDialog() == DialogResult.OK)
             {
                 
